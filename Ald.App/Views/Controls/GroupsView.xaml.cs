@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Ald.App.Views.Windows
+namespace Ald.App.Views.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для GroupsView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class GroupsView : UserControl
     {
-        public MainView()
+        public GroupsView()
         {
             InitializeComponent();
         }

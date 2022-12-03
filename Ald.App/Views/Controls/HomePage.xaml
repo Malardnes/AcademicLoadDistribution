@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Ald.App.ViewModels"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:Ald.App.Views.Controls"
              mc:Ignorable="d" 
@@ -11,17 +12,17 @@
              d:Background="White">
     
     <UserControl.Resources>
-        <Style x:Key="HeaderIconImage" TargetType="fa:IconImage">
+        <Style x:Key="HeaderIconImage" TargetType="{x:Type fa:IconImage}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="0,0,7,0"/>
         </Style>
 
-        <Style x:Key="HeaderTextBlock" TargetType="TextBlock">
+        <Style x:Key="HeaderTextBlock" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Height" Value="30"/>
         </Style>
 
-        <Style x:Key="HeaderStackPanel" TargetType="StackPanel">
+        <Style x:Key="HeaderStackPanel" TargetType="{x:Type StackPanel}">
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="Height" Value="45"/>
         </Style>
@@ -36,6 +37,8 @@
                         <TextBlock Text="Группы" Style="{StaticResource HeaderTextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
+
+                <local:GroupsView/>
                 
             </TabItem>
 
@@ -46,7 +49,9 @@
                         <TextBlock Text="Специальности" Style="{StaticResource HeaderTextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
-                
+
+                <local:SpecializationsView/>
+
             </TabItem>
 
             <TabItem>
@@ -56,7 +61,9 @@
                         <TextBlock Text="Дисциплины" Style="{StaticResource HeaderTextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
-                
+
+                <local:DisciplinesView/>
+
             </TabItem>
 
             <TabItem>
@@ -66,6 +73,8 @@
                         <TextBlock Text="Учебные планы" Style="{StaticResource HeaderTextBlock}"/>
                     </StackPanel>
                 </TabItem.Header>
+
+                <local:EducationalPlansView/>
 
             </TabItem>
 
@@ -77,7 +86,10 @@
                     </StackPanel>
                 </TabItem.Header>
 
+                <local:TeachersView/>
+
             </TabItem>
         </TabControl>
     </Grid>
+    
 </UserControl>
