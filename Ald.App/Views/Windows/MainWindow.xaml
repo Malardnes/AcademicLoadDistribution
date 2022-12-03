@@ -15,8 +15,34 @@
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="{x:Type Menu}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
     
     <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+
+            <MenuItem Header="Помощь">
+                <MenuItem Header="О программе"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text=""/>
+            </StatusBarItem>
+        </StatusBar>
+        
         <viewsControls:HomePage/>
     </DockPanel>
     
