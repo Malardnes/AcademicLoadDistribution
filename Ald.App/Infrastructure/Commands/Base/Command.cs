@@ -24,7 +24,9 @@ namespace Ald.App.Infrastructure.Commands.Base
         /// Данные, используемые командой. Если команда не требует передачи данных,
         /// этому объекту может быть присвоено значение null.
         /// </param>
-        /// <returns>true, если эта команда может быть выполнена, в противном случае - false.</returns>
+        /// <returns>
+        /// true, если эта команда может быть выполнена, в противном случае - false.
+        /// </returns>
         public abstract bool CanExecute(object parameter);
 
         /// <summary>
