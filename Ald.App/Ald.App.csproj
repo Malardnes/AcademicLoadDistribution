@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Commands\Base\" />
     <Folder Include="Infrastructure\Converters\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Styles\" />
