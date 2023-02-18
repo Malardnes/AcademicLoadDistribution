@@ -43,7 +43,7 @@
             </StatusBarItem>
         </StatusBar>
         
-        <viewsControls:HomePage/>
+        <viewsControls:HomePage DataContext="{Binding HomePageViewModel}"/>
     </DockPanel>
     
 </Window>

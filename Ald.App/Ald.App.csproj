@@ -13,7 +13,6 @@
     <Folder Include="Resources\Colors\" />
     <Folder Include="Services\" />
     <Folder Include="Data\" />
-    <Folder Include="ViewModels\Controls\" />
   </ItemGroup>
 
   <ItemGroup>
