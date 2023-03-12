@@ -7,14 +7,11 @@
         xmlns:viewsControls="clr-namespace:Ald.App.Views.Controls"
         xmlns:local="clr-namespace:Ald.App.Views.Windows"
         mc:Ignorable="d"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Главное окно"
         Height="700"
         Width="1200"
         WindowStartupLocation="CenterScreen">
-
-    <Window.DataContext>
-        <viewModels:MainWindowViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
         <Style TargetType="{x:Type Window}">

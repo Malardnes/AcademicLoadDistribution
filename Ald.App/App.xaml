@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:commands="clr-namespace:Ald.App.Infrastructure.Commands"
              xmlns:local="clr-namespace:Ald.App"
+             xmlns:viewModels="clr-namespace:Ald.App.ViewModels.Base"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <viewModels:ViewModelLocator x:Key="Locator"/>
             <commands:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
         </ResourceDictionary>
     </Application.Resources>
