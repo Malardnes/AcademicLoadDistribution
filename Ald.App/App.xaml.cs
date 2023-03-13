@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
+﻿using Ald.App.Services;
+using Ald.App.ViewModels.Base;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Ald.App.Services;
-using Ald.App.ViewModels.Base;
+using System;
+using System.Linq;
+using System.Windows;
 
 namespace Ald.App
 {

@@ -1,9 +1,14 @@
-﻿namespace Ald.Dal.Entities.Base
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Ald.Dal.Entities.Base
 {
     public abstract class Person : NamedEntity
     {
-        public string Surname { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public virtual string Surname { get; set; }
 
-        public string Patronymic { get; set; }
+        [MaxLength(255)]
+        public virtual string Patronymic { get; set; }
     }
 }

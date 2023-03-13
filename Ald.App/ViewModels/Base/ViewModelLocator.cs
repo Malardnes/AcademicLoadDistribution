@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Ald.App.ViewModels.Windows;
+﻿using Ald.App.ViewModels.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Ald.App.ViewModels.Base
 {
