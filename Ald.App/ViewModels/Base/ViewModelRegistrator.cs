@@ -12,7 +12,7 @@ namespace Ald.App.ViewModels.Base
     /// При добавлении новой view-model`и необходимо добавить (зарегестировать) её
     /// в методе AddViewModels.
     /// </remarks>
-    static class ViewModelRegistrator
+    internal static class ViewModelRegistrator
     {
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
             .AddSingleton<MainWindowViewModel>()

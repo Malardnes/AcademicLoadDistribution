@@ -1,4 +1,5 @@
 ﻿using Ald.Dal.Entities.Base;
+using System.Collections.Generic;
 
 namespace Ald.Dal.Entities
 {
@@ -29,5 +30,7 @@ namespace Ald.Dal.Entities
         public int EducationTypeId { get; set; }
 
         public EducationType EducationType { get; set; }
+
+        public virtual List<TeachingLoad> TeachingLoads { get; set; } = new List<TeachingLoad>();
     }
 }

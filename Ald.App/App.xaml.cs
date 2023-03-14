@@ -1,4 +1,5 @@
-﻿using Ald.App.Services;
+﻿using Ald.App.Data;
+using Ald.App.Services;
 using Ald.App.ViewModels.Base;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -54,10 +55,11 @@ namespace Ald.App
         /// Список сервисов.
         /// </param>
         /// <remarks>
-        /// При добавлении нового контейнера зависимостей, необходимо вызвать его
+        /// При добавлении нового контейнера зависимостей (регистратора), необходимо вызвать его
         /// в этом методе.
         /// </remarks>
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .AddDatabase(host.Configuration.GetSection("Database"))
             .AddServices()
             .AddViewModels()
         ;

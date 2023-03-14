@@ -1,5 +1,6 @@
 ﻿using Ald.Dal.Entities.Base;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ald.Dal.Entities
@@ -23,5 +24,7 @@ namespace Ald.Dal.Entities
         public int SpecializationId { get; set; }
 
         public virtual Specialization Specialization { get; set; }
+
+        public virtual List<TeachingLoad> TeachingLoads { get; set; } = new List<TeachingLoad>();
     }
 }
