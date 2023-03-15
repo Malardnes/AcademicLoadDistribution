@@ -79,7 +79,7 @@ namespace Ald.Dal.Migrations
                         column: x => x.CycleTypeId,
                         principalTable: "CycleTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,7 +102,7 @@ namespace Ald.Dal.Migrations
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,7 +124,7 @@ namespace Ald.Dal.Migrations
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -145,7 +145,7 @@ namespace Ald.Dal.Migrations
                         column: x => x.CycleId,
                         principalTable: "Cycles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,7 +170,7 @@ namespace Ald.Dal.Migrations
                         column: x => x.SpecializationId,
                         principalTable: "Specializations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,75 +197,49 @@ namespace Ald.Dal.Migrations
                         column: x => x.AttestationTypeId,
                         principalTable: "AttestationTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EducationPlans_Disciplines_DisciplineId",
                         column: x => x.DisciplineId,
                         principalTable: "Disciplines",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EducationPlans_EducationTypes_EducationTypeId",
                         column: x => x.EducationTypeId,
                         principalTable: "EducationTypes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EducationPlans_Specializations_SpecializationId",
                         column: x => x.SpecializationId,
                         principalTable: "Specializations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TeachingLoads",
+                name: "EducationPlanTeacher",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EducationPlanId = table.Column<int>(type: "int", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                    EducationPlansId = table.Column<int>(type: "int", nullable: false),
+                    TeachersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeachingLoads", x => x.Id);
+                    table.PrimaryKey("PK_EducationPlanTeacher", x => new { x.EducationPlansId, x.TeachersId });
                     table.ForeignKey(
-                        name: "FK_TeachingLoads_EducationPlans_EducationPlanId",
-                        column: x => x.EducationPlanId,
+                        name: "FK_EducationPlanTeacher_EducationPlans_EducationPlansId",
+                        column: x => x.EducationPlansId,
                         principalTable: "EducationPlans",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TeachingLoads_Teachers_TeacherId",
-                        column: x => x.TeacherId,
+                        name: "FK_EducationPlanTeacher_Teachers_TeachersId",
+                        column: x => x.TeachersId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GroupTeachingLoad",
-                columns: table => new
-                {
-                    GroupsId = table.Column<int>(type: "int", nullable: false),
-                    TeachingLoadsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GroupTeachingLoad", x => new { x.GroupsId, x.TeachingLoadsId });
-                    table.ForeignKey(
-                        name: "FK_GroupTeachingLoad_Groups_GroupsId",
-                        column: x => x.GroupsId,
-                        principalTable: "Groups",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GroupTeachingLoad_TeachingLoads_TeachingLoadsId",
-                        column: x => x.TeachingLoadsId,
-                        principalTable: "TeachingLoads",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -299,14 +273,14 @@ namespace Ald.Dal.Migrations
                 column: "SpecializationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EducationPlanTeacher_TeachersId",
+                table: "EducationPlanTeacher",
+                column: "TeachersId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Groups_SpecializationId",
                 table: "Groups",
                 column: "SpecializationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GroupTeachingLoad_TeachingLoadsId",
-                table: "GroupTeachingLoad",
-                column: "TeachingLoadsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Specializations_DepartmentId",
@@ -317,28 +291,15 @@ namespace Ald.Dal.Migrations
                 name: "IX_Teachers_DepartmentId",
                 table: "Teachers",
                 column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeachingLoads_EducationPlanId",
-                table: "TeachingLoads",
-                column: "EducationPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeachingLoads_TeacherId",
-                table: "TeachingLoads",
-                column: "TeacherId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GroupTeachingLoad");
+                name: "EducationPlanTeacher");
 
             migrationBuilder.DropTable(
                 name: "Groups");
-
-            migrationBuilder.DropTable(
-                name: "TeachingLoads");
 
             migrationBuilder.DropTable(
                 name: "EducationPlans");

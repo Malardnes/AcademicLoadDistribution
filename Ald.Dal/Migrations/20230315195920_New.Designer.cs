@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ald.Dal.Migrations
 {
     [DbContext(typeof(CollegeContext))]
-    [Migration("20230314075537_Initial")]
-    partial class Initial
+    [Migration("20230315195920_New")]
+    partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -307,6 +307,9 @@ namespace Ald.Dal.Migrations
                     b.Property<int>("EducationPlanId")
                         .HasColumnType("int");
 
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
@@ -314,24 +317,11 @@ namespace Ald.Dal.Migrations
 
                     b.HasIndex("EducationPlanId");
 
+                    b.HasIndex("GroupId");
+
                     b.HasIndex("TeacherId");
 
                     b.ToTable("TeachingLoads");
-                });
-
-            modelBuilder.Entity("GroupTeachingLoad", b =>
-                {
-                    b.Property<int>("GroupsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeachingLoadsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GroupsId", "TeachingLoadsId");
-
-                    b.HasIndex("TeachingLoadsId");
-
-                    b.ToTable("GroupTeachingLoad");
                 });
 
             modelBuilder.Entity("Ald.Dal.Entities.Cycle", b =>
@@ -339,7 +329,7 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.CycleType", "CycleType")
                         .WithMany("Cycles")
                         .HasForeignKey("CycleTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("CycleType");
@@ -350,7 +340,7 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.Cycle", "Cycle")
                         .WithMany("Disciplines")
                         .HasForeignKey("CycleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cycle");
@@ -361,25 +351,25 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.AttestationType", "AttestationType")
                         .WithMany("EducationPlans")
                         .HasForeignKey("AttestationTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ald.Dal.Entities.Discipline", "Discipline")
                         .WithMany("EducationPlans")
                         .HasForeignKey("DisciplineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ald.Dal.Entities.EducationType", "EducationType")
                         .WithMany("EducationPlans")
                         .HasForeignKey("EducationTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ald.Dal.Entities.Specialization", "Specialization")
                         .WithMany()
                         .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AttestationType");
@@ -396,7 +386,7 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.Specialization", "Specialization")
                         .WithMany("Groups")
                         .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Specialization");
@@ -407,7 +397,7 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.Department", "Department")
                         .WithMany("Specializations")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Department");
@@ -418,7 +408,7 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.Department", "Department")
                         .WithMany("Teachers")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Department");
@@ -429,33 +419,26 @@ namespace Ald.Dal.Migrations
                     b.HasOne("Ald.Dal.Entities.EducationPlan", "EducationPlan")
                         .WithMany("TeachingLoads")
                         .HasForeignKey("EducationPlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Ald.Dal.Entities.Group", "Group")
+                        .WithMany("TeachingLoads")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Ald.Dal.Entities.Teacher", "Teacher")
                         .WithMany("TeachingLoads")
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("EducationPlan");
 
+                    b.Navigation("Group");
+
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("GroupTeachingLoad", b =>
-                {
-                    b.HasOne("Ald.Dal.Entities.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ald.Dal.Entities.TeachingLoad", null)
-                        .WithMany()
-                        .HasForeignKey("TeachingLoadsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Ald.Dal.Entities.AttestationType", b =>
@@ -493,6 +476,11 @@ namespace Ald.Dal.Migrations
             modelBuilder.Entity("Ald.Dal.Entities.EducationType", b =>
                 {
                     b.Navigation("EducationPlans");
+                });
+
+            modelBuilder.Entity("Ald.Dal.Entities.Group", b =>
+                {
+                    b.Navigation("TeachingLoads");
                 });
 
             modelBuilder.Entity("Ald.Dal.Entities.Specialization", b =>

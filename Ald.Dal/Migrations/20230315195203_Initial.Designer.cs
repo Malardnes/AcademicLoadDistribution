@@ -4,14 +4,16 @@ using Ald.Dal.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ald.Dal.Migrations
 {
     [DbContext(typeof(CollegeContext))]
-    partial class CollegeContextModelSnapshot : ModelSnapshot
+    [Migration("20230315195203_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,31 +297,19 @@ namespace Ald.Dal.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("Ald.Dal.Entities.TeachingLoad", b =>
+            modelBuilder.Entity("EducationPlanTeacher", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EducationPlanId")
+                    b.Property<int>("EducationPlansId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupId")
+                    b.Property<int>("TeachersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
+                    b.HasKey("EducationPlansId", "TeachersId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("TeachersId");
 
-                    b.HasIndex("EducationPlanId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeachingLoads");
+                    b.ToTable("EducationPlanTeacher");
                 });
 
             modelBuilder.Entity("Ald.Dal.Entities.Cycle", b =>
@@ -412,31 +402,19 @@ namespace Ald.Dal.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Ald.Dal.Entities.TeachingLoad", b =>
+            modelBuilder.Entity("EducationPlanTeacher", b =>
                 {
-                    b.HasOne("Ald.Dal.Entities.EducationPlan", "EducationPlan")
-                        .WithMany("TeachingLoads")
-                        .HasForeignKey("EducationPlanId")
+                    b.HasOne("Ald.Dal.Entities.EducationPlan", null)
+                        .WithMany()
+                        .HasForeignKey("EducationPlansId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Ald.Dal.Entities.Group", "Group")
-                        .WithMany("TeachingLoads")
-                        .HasForeignKey("GroupId")
+                    b.HasOne("Ald.Dal.Entities.Teacher", null)
+                        .WithMany()
+                        .HasForeignKey("TeachersId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Ald.Dal.Entities.Teacher", "Teacher")
-                        .WithMany("TeachingLoads")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("EducationPlan");
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("Ald.Dal.Entities.AttestationType", b =>
@@ -466,29 +444,14 @@ namespace Ald.Dal.Migrations
                     b.Navigation("EducationPlans");
                 });
 
-            modelBuilder.Entity("Ald.Dal.Entities.EducationPlan", b =>
-                {
-                    b.Navigation("TeachingLoads");
-                });
-
             modelBuilder.Entity("Ald.Dal.Entities.EducationType", b =>
                 {
                     b.Navigation("EducationPlans");
                 });
 
-            modelBuilder.Entity("Ald.Dal.Entities.Group", b =>
-                {
-                    b.Navigation("TeachingLoads");
-                });
-
             modelBuilder.Entity("Ald.Dal.Entities.Specialization", b =>
                 {
                     b.Navigation("Groups");
-                });
-
-            modelBuilder.Entity("Ald.Dal.Entities.Teacher", b =>
-                {
-                    b.Navigation("TeachingLoads");
                 });
 #pragma warning restore 612, 618
         }
