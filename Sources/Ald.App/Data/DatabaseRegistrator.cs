@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ald.Dal.Context;
 using Microsoft.EntityFrameworkCore;
+using Ald.Dal;
 
 namespace Ald.App.Data
 {
@@ -29,6 +30,7 @@ namespace Ald.App.Data
                         throw new InvalidOperationException($"Тип подключения {type} не поддерживается.");
                 }
             })
+            .AddRepositories()
         ;
     }
 }
