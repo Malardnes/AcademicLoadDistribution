@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Ald.Dal;
 using Ald.Dal.Context;
 using Microsoft.EntityFrameworkCore;
-using Ald.Dal;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Ald.App.Data
 {

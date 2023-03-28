@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Ald.App.ViewModels.Base;
+﻿using Ald.App.ViewModels.Base;
 using Ald.Dal.Entities;
 using Ald.Ifs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ald.App.ViewModels.Controls
 {

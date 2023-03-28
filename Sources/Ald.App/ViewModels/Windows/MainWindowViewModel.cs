@@ -1,9 +1,9 @@
-﻿using System.Windows.Input;
+﻿using Ald.App.Infrastructure.Commands.Base;
 using Ald.App.ViewModels.Base;
 using Ald.App.ViewModels.Controls;
-using Ald.App.Infrastructure.Commands.Base;
 using Ald.Dal.Entities;
 using Ald.Ifs;
+using System.Windows.Input;
 
 namespace Ald.App.ViewModels.Windows
 {
