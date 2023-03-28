@@ -16,7 +16,6 @@ namespace Ald.App.ViewModels.Base
     {
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
             .AddSingleton<MainWindowViewModel>()
-            .AddSingleton<HomePageViewModel>()
             .AddSingleton<GroupsViewModel>()
         ;
     }
