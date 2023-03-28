@@ -8,10 +8,14 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModelsControls:GroupsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="700"
-             d:DesignWidth="1200"
+             d:DesignWidth="1300"
              d:Background="White">
 
     <UserControl.Resources>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
         </Style>

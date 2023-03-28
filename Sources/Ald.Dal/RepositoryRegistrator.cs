@@ -24,7 +24,7 @@ namespace Ald.Dal
     public static class RepositoryRegistrator
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services) => services
-            .AddTransient<IRepository<Group>, Repository<Group>>()
+            .AddTransient<IRepository<Group>, GroupsRepository>()
             .AddTransient<IRepository<Department>, Repository<Department>>()
             .AddTransient<IRepository<Specialization>, Repository<Specialization>>()
             .AddTransient<IRepository<CycleType>, Repository<CycleType>>()

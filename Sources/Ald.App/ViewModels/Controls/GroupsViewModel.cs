@@ -1,29 +1,47 @@
-﻿using Ald.App.ViewModels.Base;
-using Ald.App.ViewModels.Windows;
-using Ald.Dal.Entities;
-using Ald.Ifs;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ald.App.ViewModels.Base;
+using Ald.Dal.Entities;
+using Ald.Ifs;
 
 namespace Ald.App.ViewModels.Controls
 {
     internal class GroupsViewModel : ViewModel
     {
+        #region Приватные поля
+
+        /// <summary>
+        /// Репозиторий (хранилище) учебных групп.
+        /// </summary>
         private readonly IRepository<Group> _groupsRepository;
-        private readonly IRepository<Specialization> _specializationsRepository;
 
         private Group _selectedGroup;
         private Specialization _selectedSpecialization;
         private string _selectedCourse;
 
+        #endregion // Приватные поля.
+
+        #region Свойста
+
+        /// <summary>
+        /// Список учебных групп.
+        /// </summary>
         public List<Group> Groups { get; set; }
 
+        /// <summary>
+        /// Список специальностей.
+        /// </summary>
         public List<Specialization> Specializations { get; set; } = new List<Specialization>();
 
+        /// <summary>
+        /// Список курсов.
+        /// </summary>
         public List<string> Courses { get; set; } = new List<string>() { "Все курсы", "4", "3", "2", "1" };
 
+        /// <summary>
+        /// Выбранная учебная группа.
+        /// </summary>
         public Group SelectedGroup
         {
             get => _selectedGroup;
@@ -33,6 +51,9 @@ namespace Ald.App.ViewModels.Controls
             }
         }
 
+        /// <summary>
+        /// Выбранная специальность.
+        /// </summary>
         public Specialization SelectedSpecialization
         {
             get => _selectedSpecialization;
@@ -44,6 +65,9 @@ namespace Ald.App.ViewModels.Controls
             }
         }
 
+        /// <summary>
+        /// Выбранный курс.
+        /// </summary>
         public string SelectedCourse
         {
             get => _selectedCourse;
@@ -55,6 +79,14 @@ namespace Ald.App.ViewModels.Controls
             }
         }
 
+        #endregion // Свойста.
+
+        #region Команды
+
+        #endregion // Команды.
+
+        #region Конструкторы
+
         /// <summary>
         /// Отладочный конструктор.
         /// Необходим для тестирования отображения данных в представлении.
@@ -63,24 +95,19 @@ namespace Ald.App.ViewModels.Controls
         {
             if (!App.IsDesignMode)
             {
-                throw new InvalidOperationException("Данный конструктор необходимо" +
-                    " использовать в режиме разработки!"
+                throw new InvalidOperationException("Данный конструктор разрешено" +
+                    " использовать только в режиме разработки!"
                 );
             }
         }
 
-        public GroupsViewModel(
-            IRepository<Group> groupsRepository,
-            IRepository<Specialization> specializationsRepository
-        )
+        public GroupsViewModel(IRepository<Group> groupsRepository)
         {
             _groupsRepository = groupsRepository;
-            _specializationsRepository = specializationsRepository;
 
             Groups = _groupsRepository.Items.ToList();
 
-            Specializations = specializationsRepository.Items.ToList();
-            Specializations.Insert(0, new Specialization { Name = "Все специальности", Groups = Groups });
+            Specializations.Add(new Specialization { Name = "Все специальности", Groups = Groups });
 
             foreach (var group in Groups)
             {
@@ -91,25 +118,34 @@ namespace Ald.App.ViewModels.Controls
             SelectedSpecialization = Specializations[0];
             SelectedCourse = Courses[0];
 
-            InvokePropertyChanged(nameof(Courses));
-            InvokePropertyChanged(nameof(Specializations));
-            InvokePropertyChanged(nameof(Groups));
-
             SelectFirstGroup();
         }
 
+        #endregion // Конструкторы.
+
+        #region Приватные методы
+
+        /// <summary>
+        /// Отсортировать список учебных групп.
+        /// </summary>
+        /// <param name="course">
+        /// Курс.
+        /// </param>
+        /// <param name="specializationName">
+        /// Наименование специальности.
+        /// </param>
         private void SortGroups(string course, string specializationName)
         {
             if (course == null || specializationName == null) return;
 
-            if (course.Length == 0 || specializationName.Length == 0) return;
+            if (string.IsNullOrWhiteSpace(course) || string.IsNullOrWhiteSpace(specializationName)) return;
 
             if (course == "Все курсы" && specializationName == "Все специальности")
             {
                 Groups = _groupsRepository.Items.ToList();
+
                 InvokePropertyChanged(nameof(Groups));
                 SelectFirstGroup();
-                return;
             }
             else if (course != "Все курсы" && specializationName == "Все специальности")
             {
@@ -119,7 +155,6 @@ namespace Ald.App.ViewModels.Controls
 
                 InvokePropertyChanged(nameof(Groups));
                 SelectFirstGroup();
-                return;
             }
             else if (course == "Все курсы" && specializationName != "Все специальности")
             {
@@ -129,7 +164,6 @@ namespace Ald.App.ViewModels.Controls
 
                 InvokePropertyChanged(nameof(Groups));
                 SelectFirstGroup();
-                return;
             }
             else if (course != "Все курсы" && specializationName != "Все специальности")
             {
@@ -140,7 +174,6 @@ namespace Ald.App.ViewModels.Controls
 
                 InvokePropertyChanged(nameof(Groups));
                 SelectFirstGroup();
-                return;
             }
             else
             {
@@ -148,10 +181,18 @@ namespace Ald.App.ViewModels.Controls
             }
         }
 
+        /// <summary>
+        /// Выбрать первую учебную группу в списке.
+        /// </summary>
+        /// <remarks>
+        /// Если список пуст, то соответственно ни одна группа не будет выбрана.
+        /// </remarks>
         private void SelectFirstGroup()
         {
             if (Groups != null && Groups.Count >= 1)
                 SelectedGroup = Groups[0];
         }
+
+        #endregion // Приватные методы.
     }
 }

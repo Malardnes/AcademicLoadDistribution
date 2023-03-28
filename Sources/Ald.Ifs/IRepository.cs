@@ -9,6 +9,8 @@ namespace Ald.Ifs
     {
         IQueryable<T> Items { get; }
 
+        bool AutoSaveChanges { get; set; }
+
         T Get(int id);
 
         Task<T> GetAsync(int id, CancellationToken cancel = default);

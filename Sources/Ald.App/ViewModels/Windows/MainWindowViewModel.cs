@@ -1,21 +1,43 @@
-﻿using Ald.App.Infrastructure.Commands.Base;
+﻿using System.Windows.Input;
 using Ald.App.ViewModels.Base;
 using Ald.App.ViewModels.Controls;
+using Ald.App.Infrastructure.Commands.Base;
 using Ald.Dal.Entities;
 using Ald.Ifs;
-using System.Windows.Input;
 
 namespace Ald.App.ViewModels.Windows
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region Приватные поля
+
+        /// <summary>
+        /// Текущая дочерняя модель-представление.
+        /// </summary>
         private ViewModel _currentViewModel;
+
+        /// <summary>
+        /// Репозиторий (хранилище) учебных групп.
+        /// </summary>
         private readonly IRepository<Group> _groupsRepository;
+
+        /// <summary>
+        /// Репозиторий (хранилище) учебных специальностей.
+        /// </summary>
         private readonly IRepository<Specialization> _specializationsRepository;
+
+        #endregion // Приватные поля.
 
         #region Свойства
 
-        public ViewModel CurrentViewModel { get => _currentViewModel; set => SetProperty(ref _currentViewModel, value); }
+        /// <summary>
+        /// Текущая дочерняя модель-представление.
+        /// </summary>
+        public ViewModel CurrentViewModel
+        {
+            get => _currentViewModel;
+            set => SetProperty(ref _currentViewModel, value);
+        }
 
         #endregion // Свойства.
 
@@ -44,10 +66,7 @@ namespace Ald.App.ViewModels.Windows
         /// </summary>
         private void OnShowGroupsViewCommandExecuted(object p)
         {
-            CurrentViewModel = new GroupsViewModel(
-                _groupsRepository,
-                _specializationsRepository
-            );
+            CurrentViewModel = new GroupsViewModel(_groupsRepository);
         }
 
         #endregion // Отобразить представление учебных групп.
@@ -62,7 +81,7 @@ namespace Ald.App.ViewModels.Windows
         /// <summary>
         /// Отобразить представление специальностей.
         /// </summary>
-        public ICommand ShowSpecializationsViewCommand => _showGroupsViewCommand
+        public ICommand ShowSpecializationsViewCommand => _showSpecializationsViewCommand
             ??= new DelegateCommand(OnShowSpecializationsViewCommandExecuted, CanShowSpecializationsViewCommandExecute);
 
         /// <summary>
@@ -82,6 +101,8 @@ namespace Ald.App.ViewModels.Windows
 
         #endregion // Команды.
 
+        #region Конструкторы
+
         public MainWindowViewModel(
             IRepository<Group> groupsRepository,
             IRepository<Specialization> specializationsRepository
@@ -90,5 +111,11 @@ namespace Ald.App.ViewModels.Windows
             _groupsRepository = groupsRepository;
             _specializationsRepository = specializationsRepository;
         }
+
+        #endregion // Конструкторы.
+
+        #region Приватные методы
+
+        #endregion // Приватные методы.
     }
 }

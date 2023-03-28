@@ -83,8 +83,8 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0">
-                    <Button.Content>
+                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowSpecializationsViewCommand}">
+                <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="PeopleArrows" Style="{StaticResource HeaderIconImage}"/>
                             <TextBlock Text="Специальности" Style="{StaticResource HeaderTextBlock}"/>
