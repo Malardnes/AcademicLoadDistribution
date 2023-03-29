@@ -24,6 +24,8 @@ namespace Ald.Dal.Entities
 
         public virtual List<Group> Groups { get; set; } = new List<Group>();
 
+        public virtual List<EducationPlan> EducationPlans { get; set; } = new List<EducationPlan>();
+
         // public virtual List<Discipline> Disciplines { get; set; } = new List<Discipline>();
     }
 }
