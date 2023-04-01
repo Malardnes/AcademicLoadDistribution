@@ -6,6 +6,7 @@
         xmlns:viewModels="clr-namespace:Ald.App.ViewModels.Windows"
         xmlns:viewModelsControls="clr-namespace:Ald.App.ViewModels.Controls"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:controls="clr-namespace:Ald.App.Views.Controls"
         xmlns:local="clr-namespace:Ald.App.Views.Windows"
         mc:Ignorable="d"
@@ -15,6 +16,12 @@
         Width="1400"
         WindowStartupLocation="CenterScreen">
 
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:InvokeCommandAction Command="{Binding ShowGroupsViewCommand}"/>
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+    
     <Window.Resources>
         <Style TargetType="{x:Type Window}">
             <Setter Property="FontSize" Value="16"/>
