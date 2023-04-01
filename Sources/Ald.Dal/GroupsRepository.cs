@@ -7,7 +7,10 @@ namespace Ald.Dal
 {
     internal class GroupsRepository : Repository<Group>
     {
-        public override IQueryable<Group> Items => base.Items.Include(g => g.Specialization);
+        public override IQueryable<Group> Items => base.Items
+            .Include(g => g.Specialization)
+            .ThenInclude(s => s.EducationPlans)
+        ;
 
         public GroupsRepository(CollegeContext context) : base(context)
         {
