@@ -42,6 +42,14 @@ namespace Ald.Dal.Context
             }
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Group>()
+                .Property(e => e.StartEducationDate)
+                .HasColumnType("date");
+
+            modelBuilder.Entity<Group>()
+                .Property(e => e.EndEducationDate)
+                .HasColumnType("date");
         }
     }
 }
