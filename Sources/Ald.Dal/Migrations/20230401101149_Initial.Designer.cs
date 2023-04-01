@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ald.Dal.Migrations
 {
     [DbContext(typeof(CollegeContext))]
-    [Migration("20230315195920_New")]
-    partial class New
+    [Migration("20230401101149_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -209,7 +209,7 @@ namespace Ald.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndEducationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<bool>("IsGraduate")
                         .HasColumnType("bit");
@@ -223,7 +223,7 @@ namespace Ald.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartEducationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("StudentsCount")
                         .HasColumnType("int");
@@ -367,7 +367,7 @@ namespace Ald.Dal.Migrations
                         .IsRequired();
 
                     b.HasOne("Ald.Dal.Entities.Specialization", "Specialization")
-                        .WithMany()
+                        .WithMany("EducationPlans")
                         .HasForeignKey("SpecializationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -485,6 +485,8 @@ namespace Ald.Dal.Migrations
 
             modelBuilder.Entity("Ald.Dal.Entities.Specialization", b =>
                 {
+                    b.Navigation("EducationPlans");
+
                     b.Navigation("Groups");
                 });
 

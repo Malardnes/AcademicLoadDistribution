@@ -207,7 +207,7 @@ namespace Ald.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndEducationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<bool>("IsGraduate")
                         .HasColumnType("bit");
@@ -221,7 +221,7 @@ namespace Ald.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartEducationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("StudentsCount")
                         .HasColumnType("int");
