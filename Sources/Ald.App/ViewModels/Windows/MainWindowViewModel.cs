@@ -22,9 +22,24 @@ namespace Ald.App.ViewModels.Windows
         private readonly IRepository<Group> _groupsRepository;
 
         /// <summary>
-        /// Репозиторий (хранилище) учебных специальностей.
+        /// Репозиторий (хранилище) специальностей.
         /// </summary>
         private readonly IRepository<Specialization> _specializationsRepository;
+
+        /// <summary>
+        /// Репозиторий (хранилище) дисциплин.
+        /// </summary>
+        private readonly IRepository<Discipline> _disciplinesRepository;
+
+        /// <summary>
+        /// Репозиторий (хранилище) учебных планов.
+        /// </summary>
+        private readonly IRepository<EducationPlan> _educationPlansRepository;
+
+        /// <summary>
+        /// Репозиторий (хранилище) информации о преподавателях.
+        /// </summary>
+        private readonly IRepository<Teacher> _teachersRepository;
 
         #endregion // Приватные поля.
 
@@ -94,10 +109,94 @@ namespace Ald.App.ViewModels.Windows
         /// </summary>
         private void OnShowSpecializationsViewCommandExecuted(object p)
         {
-
+            CurrentViewModel = new SpecializationsViewModel(_specializationsRepository);
         }
 
         #endregion // Отобразить представление специальностей.
+
+        #region Отобразить представление дисциплин
+
+        /// <summary>
+        /// Отобразить представление дисциплин.
+        /// </summary>
+        private ICommand _showDisciplinesViewCommand;
+
+        /// <summary>
+        /// Отобразить представление дисциплин.
+        /// </summary>
+        public ICommand ShowDisciplinesViewCommand => _showDisciplinesViewCommand
+            ??= new DelegateCommand(OnShowDisciplinesViewCommandExecuted, CanShowDisciplinesViewCommandExecute);
+
+        /// <summary>
+        /// Проверка возможности выполения - отобразить представление дисциплин.
+        /// </summary>
+        private bool CanShowDisciplinesViewCommandExecute(object p) => true;
+
+        /// <summary>
+        /// Логика выполнения - отобразить представление дисциплин.
+        /// </summary>
+        private void OnShowDisciplinesViewCommandExecuted(object p)
+        {
+            CurrentViewModel = new DisciplinesViewModel(_disciplinesRepository);
+        }
+
+        #endregion // Отобразить представление дисциплин.
+
+        #region Отобразить представление учебных планов
+
+        /// <summary>
+        /// Отобразить представление учебных планов.
+        /// </summary>
+        private ICommand _showEducationalPlansViewCommand;
+
+        /// <summary>
+        /// Отобразить представление учебных планов.
+        /// </summary>
+        public ICommand ShowEducationalPlansViewCommand => _showEducationalPlansViewCommand
+            ??= new DelegateCommand(OnShowEducationalPlansViewCommandExecuted, CanShowEducationalPlansViewCommandExecute);
+
+        /// <summary>
+        /// Проверка возможности выполения - отобразить представление учебных планов.
+        /// </summary>
+        private bool CanShowEducationalPlansViewCommandExecute(object p) => true;
+
+        /// <summary>
+        /// Логика выполнения - отобразить представление учебных планов.
+        /// </summary>
+        private void OnShowEducationalPlansViewCommandExecuted(object p)
+        {
+            // ...
+        }
+
+        #endregion // Отобразить представление учебных планов.
+
+        #region Отобразить представление преподавателей
+
+        /// <summary>
+        /// Отобразить представление преподавателей.
+        /// </summary>
+        private ICommand _showTeachersViewCommand;
+
+        /// <summary>
+        /// Отобразить представление преподавателей.
+        /// </summary>
+        public ICommand ShowTeachersViewCommand => _showTeachersViewCommand
+            ??= new DelegateCommand(OnShowTeachersViewCommandExecuted, CanShowTeachersViewCommandExecute);
+
+        /// <summary>
+        /// Проверка возможности выполения - отобразить представление преподавателей.
+        /// </summary>
+        private bool CanShowTeachersViewCommandExecute(object p) => true;
+
+        /// <summary>
+        /// Логика выполнения - отобразить представление преподавателей.
+        /// </summary>
+        private void OnShowTeachersViewCommandExecuted(object p)
+        {
+            CurrentViewModel = new TeachersViewModel(_teachersRepository);
+        }
+
+        #endregion // Отобразить представление преподавателей.
 
         #endregion // Команды.
 

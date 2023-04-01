@@ -1,12 +1,16 @@
 ﻿using Ald.App.ViewModels.Base;
+using Ald.Dal.Entities;
+using Ald.Ifs;
 
 namespace Ald.App.ViewModels.Controls
 {
     internal class TeachersViewModel : ViewModel
     {
-        public TeachersViewModel()
-        {
+        private IRepository<Teacher> _teachersRepository;
 
+        public TeachersViewModel(IRepository<Teacher> teachersRepository)
+        {
+            _teachersRepository = teachersRepository;
         }
     }
 }

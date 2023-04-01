@@ -12,7 +12,7 @@
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Главное окно"
         Height="700"
-        Width="1200"
+        Width="1400"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -69,11 +69,11 @@
             </Grid.Resources>
             
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" Grid.Column="0" Background="Gray">
+            <StackPanel Orientation="Vertical" Grid.Column="0" Background="Azure">
                 <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowGroupsViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
@@ -92,7 +92,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0">
+                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowDisciplinesViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="Book" Style="{StaticResource HeaderIconImage}"/>
@@ -101,7 +101,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0">
+                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowEducationalPlansViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="TableList" Style="{StaticResource HeaderIconImage}"/>
@@ -110,7 +110,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0">
+                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowTeachersViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="UserCircle" Style="{StaticResource HeaderIconImage}"/>
