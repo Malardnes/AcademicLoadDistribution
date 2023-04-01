@@ -87,7 +87,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="model:Group">
                             <StackPanel Orientation="Vertical" Margin="5" Background="Beige" Width="130">
-                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
                                 <TextBlock Text="{Binding StudentsCount, StringFormat='Студентов: {0}'}" Margin="5,0,0,0"/>
                                 <TextBlock Text="{Binding Course, StringFormat='Курс: {0}'}" Margin="5,0,0,0"/>
                             </StackPanel>
