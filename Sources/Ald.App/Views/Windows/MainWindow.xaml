@@ -44,8 +44,14 @@
 
         <Style x:Key="HeaderStackPanel" TargetType="{x:Type StackPanel}">
             <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Width" Value="auto"/>
+            <Setter Property="MinWidth" Value="150"/>
             <Setter Property="Height" Value="45"/>
+        </Style>
+
+        <Style x:Key="HeaderButton" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5,5,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="15,0"/>
         </Style>
     </Window.Resources>
     
@@ -66,22 +72,17 @@
             </StatusBarItem>
         </StatusBar>
 
-        <Grid>
-            <Grid.Resources>
+        <DockPanel>
+            <DockPanel.Resources>
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="../../Templates/MainViewModel.xaml"/>
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
-            </Grid.Resources>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            </DockPanel.Resources>
 
-            <StackPanel Orientation="Vertical" Grid.Column="0" Background="Azure">
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowGroupsViewCommand}">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="Azure">
+                <Button Style="{StaticResource HeaderButton}" Command="{Binding ShowGroupsViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource HeaderIconImage}"/>
@@ -90,8 +91,8 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowSpecializationsViewCommand}">
-                <Button.Content>
+                <Button Style="{StaticResource HeaderButton}" Command="{Binding ShowSpecializationsViewCommand}">
+                    <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="PeopleArrows" Style="{StaticResource HeaderIconImage}"/>
                             <TextBlock Text="Специальности" Style="{StaticResource HeaderTextBlock}"/>
@@ -99,7 +100,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowDisciplinesViewCommand}">
+                <Button Style="{StaticResource HeaderButton}" Command="{Binding ShowDisciplinesViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="Book" Style="{StaticResource HeaderIconImage}"/>
@@ -108,7 +109,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowEducationalPlansViewCommand}">
+                <Button Style="{StaticResource HeaderButton}" Command="{Binding ShowEducationalPlansViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="TableList" Style="{StaticResource HeaderIconImage}"/>
@@ -117,7 +118,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Margin="5,5,5,0" HorizontalContentAlignment="Left" Padding="15,0" Command="{Binding ShowTeachersViewCommand}">
+                <Button Style="{StaticResource HeaderButton}" Command="{Binding ShowTeachersViewCommand}">
                     <Button.Content>
                         <StackPanel Style="{StaticResource HeaderStackPanel}">
                             <fa:IconImage Icon="UserCircle" Style="{StaticResource HeaderIconImage}"/>
@@ -127,8 +128,9 @@
                 </Button>
             </StackPanel>
 
-            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
-        </Grid>
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </DockPanel>
+
     </DockPanel>
     
 </Window>

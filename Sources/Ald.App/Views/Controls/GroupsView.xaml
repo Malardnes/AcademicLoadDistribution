@@ -23,8 +23,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" MinWidth="150"/>
-            <ColumnDefinition Width="1.8*" MinWidth="150"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.8*"/>
         </Grid.ColumnDefinitions>
 
         <GroupBox Grid.Column="0" Header="Список групп" Margin="2">

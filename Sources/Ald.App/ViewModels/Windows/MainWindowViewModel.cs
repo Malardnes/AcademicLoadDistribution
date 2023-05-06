@@ -204,11 +204,17 @@ namespace Ald.App.ViewModels.Windows
 
         public MainWindowViewModel(
             IRepository<Group> groupsRepository,
-            IRepository<Specialization> specializationsRepository
+            IRepository<Specialization> specializationsRepository,
+            IRepository<Discipline> disciplinesRepository,
+            IRepository<EducationPlan> educationPlansRepository,
+            IRepository<Teacher> teachersRepository
         )
         {
             _groupsRepository = groupsRepository;
             _specializationsRepository = specializationsRepository;
+            _disciplinesRepository = disciplinesRepository;
+            _educationPlansRepository = educationPlansRepository;
+            _teachersRepository = teachersRepository;
         }
 
         #endregion // Конструкторы.
