@@ -5,17 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModelsControls="clr-namespace:Ald.App.ViewModels.Controls"
              xmlns:local="clr-namespace:Ald.App.Views.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModelsControls:SpecializationsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="700"
              d:DesignWidth="1200"
-             d:Background="White">
+             d:Background="White"
+             FontSize="16">
 
     <UserControl.Resources>
-        
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+        </Style>
     </UserControl.Resources>
-    
-    <Grid>
-            
-    </Grid>
-    
+
+    <DockPanel>
+        <UniformGrid DockPanel.Dock="Bottom" Columns="3">
+            <Button Content="Создать"
+                    ToolTip="Создать новую специальность"
+                    Command="{Binding CreateSpecializationCommand}"
+                    Margin="3"/>
+
+            <Button Content="Редактировать"
+                    Margin="3">
+                <Button.ToolTip>
+                    <TextBlock/>
+                </Button.ToolTip>
+            </Button>
+
+            <Button Content="Удалить"
+                    Margin="3">
+                <Button.ToolTip>
+                    <TextBlock/>
+                </Button.ToolTip>
+            </Button>
+        </UniformGrid>
+
+        <DataGrid ItemsSource="{Binding Specializations}"
+                  SelectedItem=""
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  AlternatingRowBackground="LightGray"
+                  HorizontalGridLinesBrush="Transparent"
+                  VerticalGridLinesBrush="DarkGray"
+                  Margin="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Специальность" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Количество групп" Binding="{Binding Groups.Count}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+
 </UserControl>
