@@ -5,17 +5,116 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModelsControls="clr-namespace:Ald.App.ViewModels.Controls"
              xmlns:local="clr-namespace:Ald.App.Views.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModelsControls:DisciplinesViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="700"
-             d:DesignWidth="1200"
-             d:Background="White">
+             d:DesignWidth="1300"
+             d:Background="White"
+             FontSize="16">
 
     <UserControl.Resources>
-        
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+        </Style>
     </UserControl.Resources>
-    
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.8*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Список образовательных циклов" Margin="2">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Поиск:" VerticalAlignment="Center" Padding="0,5" Margin="0,0,5,0"/>
+                        <TextBox Grid.Column="1" Text="{x:Null}" Background="LightGray" Padding="0,5"/>
+                    </Grid>
+
+                    <TextBlock Grid.Row="0" Text="Глобальный образовательный цикл" VerticalAlignment="Center" Padding="0,5"/>
+                    <ComboBox Grid.Row="1" ItemsSource="{Binding Specializations}" SelectedItem="{Binding SelectedSpecialization}" DisplayMemberPath="Name" SelectedIndex="0" Padding="5,5,0,5" Margin="0,3,0,3"/>
+                </Grid>
+
+                <UniformGrid DockPanel.Dock="Bottom" Columns="3">
+                    <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="Создать новую дисциплину"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Редактировать" Command="{Binding UpdateSelectedGroupCommand}" Margin="1.5,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете дисциплину для редактирования',
+                                StringFormat='Редактировать дисциплину {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Удалить" Command="{Binding DeleteSelectedGroupCommand}" Margin="1.5,3,0,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете дисциплину для удаления',
+                                StringFormat='Удалить дисциплину {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+                </UniformGrid>
+
+                <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="model:Discipline">
+                            <StackPanel Orientation="Vertical" Margin="5" Background="Beige" Width="130">
+                                <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding StudentsCount, StringFormat='Студентов: {0}'}" Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding Course, StringFormat='Курс: {0}'}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Margin="2">
+            <GroupBox.Header>
+                <TextBlock Text="{Binding
+                    SelectedGroup.Name,
+                    FallbackValue='Цикл не выбран',
+                    StringFormat='Список дисциплин из цикла {0}'}"/>
+            </GroupBox.Header>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Поиск:" VerticalAlignment="Center" Padding="0,5" Margin="10,0,10,0"/>
+                    <TextBox Grid.Column="1" Text="{x:Null}" Background="LightGray" MinWidth="350" Padding="0,5"/>
+                </Grid>
+
+                <DataGrid ItemsSource="{Binding SelectedGroup.Specialization.EducationPlans}" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="DarkGray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Индекс" Binding="{Binding Discipline.Index}"/>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Discipline.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+
+        <GridSplitter Width="3" Background="Transparent"/>
     </Grid>
-    
+
 </UserControl>

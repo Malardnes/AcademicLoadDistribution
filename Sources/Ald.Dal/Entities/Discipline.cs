@@ -14,12 +14,10 @@ namespace Ald.Dal.Entities
         [MaxLength(255)]
         public override string Name { get; set; }
 
+        [Required]
         public int CycleId { get; set; }
-
         public virtual Cycle Cycle { get; set; }
 
-        // public virtual List<Specialization> Specializations { get; set; } = new List<Specialization>();
-
-        public virtual List<EducationPlan> EducationPlans { get; set; } = new List<EducationPlan>();
+        public virtual ICollection<ContentOfTheEducationalPlan> EducationPlans { get; set; }
     }
 }

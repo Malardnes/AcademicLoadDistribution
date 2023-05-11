@@ -34,7 +34,7 @@ namespace Ald.App.ViewModels.Windows
         /// <summary>
         /// Репозиторий (хранилище) учебных планов.
         /// </summary>
-        private readonly IRepository<EducationPlan> _educationPlansRepository;
+        private readonly IRepository<ContentOfTheEducationalPlan> _educationPlansRepository;
 
         /// <summary>
         /// Репозиторий (хранилище) информации о преподавателях.
@@ -206,7 +206,7 @@ namespace Ald.App.ViewModels.Windows
             IRepository<Group> groupsRepository,
             IRepository<Specialization> specializationsRepository,
             IRepository<Discipline> disciplinesRepository,
-            IRepository<EducationPlan> educationPlansRepository,
+            IRepository<ContentOfTheEducationalPlan> educationPlansRepository,
             IRepository<Teacher> teachersRepository
         )
         {

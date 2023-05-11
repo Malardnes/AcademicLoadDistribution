@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ald.App", "Sources\Ald.App\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ald.Dal", "Sources\Ald.Dal\Ald.Dal.csproj", "{64D9B898-F64B-4B1F-819D-149B14F340C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ald.Ifs", "Sources\Ald.Ifs\Ald.Ifs.csproj", "{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{64D9B898-F64B-4B1F-819D-149B14F340C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D9B898-F64B-4B1F-819D-149B14F340C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D9B898-F64B-4B1F-819D-149B14F340C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,7 +30,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{590C52E5-1EC3-4623-81A2-690B197467A7} = {5D293D2D-6C5C-4F31-A19C-71287FD9612B}
 		{64D9B898-F64B-4B1F-819D-149B14F340C9} = {5D293D2D-6C5C-4F31-A19C-71287FD9612B}
-		{1D87C22B-0118-4B90-835A-C9CA8A3BBBF3} = {5D293D2D-6C5C-4F31-A19C-71287FD9612B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {399F8156-BA6E-4465-B927-2C9D6369FBFB}

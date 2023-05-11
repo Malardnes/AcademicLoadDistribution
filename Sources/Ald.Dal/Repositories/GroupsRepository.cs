@@ -9,7 +9,7 @@ namespace Ald.Dal
     {
         public override IQueryable<Group> Items => base.Items
             .Include(g => g.Specialization)
-            .ThenInclude(s => s.EducationPlans)
+            .ThenInclude(s => s.EducationalPlans)
         ;
 
         public GroupsRepository(CollegeContext context) : base(context)

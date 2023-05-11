@@ -1,4 +1,5 @@
 ﻿using Ald.Dal.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,8 +7,8 @@ namespace Ald.Dal.Entities
 {
     public class Specialization : NamedEntity
     {
+        [Required]
         public int DepartmentId { get; set; }
-
         public virtual Department Department { get; set; }
 
         [Required]
@@ -18,14 +19,13 @@ namespace Ald.Dal.Entities
         [MaxLength(255)]
         public string Qualification { get; set; }
 
+        [Required]
         public int EducationYears { get; set; }
 
+        [Required]
         public int EducationMonths { get; set; }
 
-        public virtual List<Group> Groups { get; set; } = new List<Group>();
-
-        public virtual List<EducationPlan> EducationPlans { get; set; } = new List<EducationPlan>();
-
-        // public virtual List<Discipline> Disciplines { get; set; } = new List<Discipline>();
+        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<EducationalPlan> EducationalPlans { get; set; }
     }
 }

@@ -10,8 +10,6 @@ namespace Ald.Dal.Entities
         [MaxLength(255)]
         public override string Name { get; set; }
 
-        public virtual List<Specialization> Specializations { get; set; } = new List<Specialization>();
-
-        public virtual List<Teacher> Teachers { get; set; } = new List<Teacher>();
+        public virtual ICollection<Specialization> Specializations { get; set; }
     }
 }

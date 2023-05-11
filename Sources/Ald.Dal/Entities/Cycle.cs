@@ -14,10 +14,10 @@ namespace Ald.Dal.Entities
         [MaxLength(255)]
         public override string Name { get; set; }
 
-        public virtual List<Discipline> Disciplines { get; set; } = new List<Discipline>();
-
+        [Required]
         public int CycleTypeId { get; set; }
-
         public virtual CycleType CycleType { get; set; }
+
+        public virtual ICollection<Discipline> Disciplines { get; set; }
     }
 }

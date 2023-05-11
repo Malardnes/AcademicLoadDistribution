@@ -14,8 +14,6 @@ namespace Ald.Dal
         private readonly CollegeContext _context;
         private readonly DbSet<T> _set;
 
-        public bool AutoSaveChanges { get; set; } = true;
-
         public Repository(CollegeContext context)
         {
             _context = context;
@@ -23,6 +21,8 @@ namespace Ald.Dal
         }
 
         public virtual IQueryable<T> Items => _set;
+
+        public bool AutoSaveChanges { get; set; } = true;
 
         public T Get(int id)
         {

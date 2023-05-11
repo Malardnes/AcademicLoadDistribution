@@ -1,19 +1,19 @@
 ﻿using Ald.Dal.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ald.Dal.Entities
 {
     public class TeachingLoad : Entity
     {
-        public int EducationPlanId { get; set; }
+        [Required]
+        public string GroupName { get; set; }
 
-        public virtual EducationPlan EducationPlan { get; set; }
-
+        [Required]
         public int TeacherId { get; set; }
-
         public virtual Teacher Teacher { get; set; }
 
-        public int GroupId { get; set; }
-
-        public virtual Group Group { get; set; }
+        [Required]
+        public int ContentOfTheEducationalPlanId { get; set; }
+        public virtual ContentOfTheEducationalPlan ContentOfTheEducationalPlan { get; set; }
     }
 }

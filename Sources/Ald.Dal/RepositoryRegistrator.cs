@@ -32,7 +32,7 @@ namespace Ald.Dal
             .AddTransient<IRepository<Discipline>, Repository<Discipline>>()
             .AddTransient<IRepository<AttestationType>, Repository<AttestationType>>()
             .AddTransient<IRepository<EducationType>, Repository<EducationType>>()
-            .AddTransient<IRepository<EducationPlan>, Repository<EducationPlan>>()
+            .AddTransient<IRepository<ContentOfTheEducationalPlan>, Repository<ContentOfTheEducationalPlan>>()
             .AddTransient<IRepository<Teacher>, Repository<Teacher>>()
             .AddTransient<IRepository<TeachingLoad>, Repository<TeachingLoad>>()
         ;
