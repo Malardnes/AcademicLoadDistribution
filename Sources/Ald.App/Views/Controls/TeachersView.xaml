@@ -6,16 +6,137 @@
              xmlns:viewModelsControls="clr-namespace:Ald.App.ViewModels.Controls"
              xmlns:local="clr-namespace:Ald.App.Views.Controls"
              mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModelsControls:TeachersViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="700"
-             d:DesignWidth="1200"
-             d:Background="White">
+             d:DesignWidth="1300"
+             d:Background="White"
+             FontSize="16">
 
     <UserControl.Resources>
-        
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+        </Style>
     </UserControl.Resources>
-    
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.8*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Преподаватели" Margin="2">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,5">
+                    <Grid Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Поиск:" VerticalAlignment="Center" Padding="0,5" Margin="0,0,5,0"/>
+                        <TextBox Grid.Column="1" Text="{x:Null}" Background="LightGray" Padding="0,5"/>
+                    </Grid>
+                </Grid>
+
+                <UniformGrid DockPanel.Dock="Bottom" Columns="3">
+                    <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="Добавить преподавателя"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Редактировать" Command="{Binding UpdateSelectedGroupCommand}" Margin="1.5,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете преподавателя для редактирования',
+                                StringFormat='Редактировать информацию о преподавателе {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Удалить" Command="{Binding DeleteSelectedGroupCommand}" Margin="1.5,3,0,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете преподавателя для удаления',
+                                StringFormat='Удалить преподавателя {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+                </UniformGrid>
+
+                <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" SelectedIndex="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="model:Discipline">
+                            <StackPanel Orientation="Vertical" Margin="5" Background="Beige" Width="130">
+                                <TextBlock Text="{Binding Name}" Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding StudentsCount, StringFormat='Студентов: {0}'}" Margin="5,0,0,0"/>
+                                <TextBlock Text="{Binding Course, StringFormat='Курс: {0}'}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Margin="2">
+            <GroupBox.Header>
+                <TextBlock Text="{Binding
+                    SelectedGroup.Name,
+                    FallbackValue='Преподаватель не выбран',
+                    StringFormat='Нагрузка на преподавателя {0}'}"/>
+            </GroupBox.Header>
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Поиск:" VerticalAlignment="Center" Padding="0,5" Margin="10,0,10,0"/>
+                    <TextBox Grid.Column="1" Text="{x:Null}" Background="LightGray" MinWidth="350" Padding="0,5"/>
+                </Grid>
+
+                <UniformGrid DockPanel.Dock="Bottom" Columns="3">
+                    <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="Добавить нагрузку"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Редактировать" Command="{Binding UpdateSelectedGroupCommand}" Margin="1.5,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                    SelectedGroup.Name,
+                                    FallbackValue='Выберете нагрузку для редактирования',
+                                    StringFormat='Редактировать нагрузку {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Удалить" Command="{Binding DeleteSelectedGroupCommand}" Margin="1.5,3,0,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                    SelectedGroup.Name,
+                                    FallbackValue='Выберете нагрузку для удаления',
+                                    StringFormat='Удалить нагрузку {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+                </UniformGrid>
+
+                <DataGrid ItemsSource="{Binding SelectedGroup.Specialization.EducationPlans}" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="DarkGray">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Группа" Binding="{Binding Discipline.Index}"/>
+                        <DataGridTextColumn Header="Дисциплина" Binding="{Binding Discipline.Name}"/>
+                        <DataGridTextColumn Header="Часов в неделю" Binding="{Binding Discipline.Name}"/>
+                        <DataGridTextColumn Header="Число недель" Binding="{Binding Discipline.Name}"/>
+                        <DataGridTextColumn Header="Часов в семестре" Binding="{Binding Discipline.Name}"/>
+                        <DataGridTextColumn Header="Лабораторно практические" Binding="{Binding Discipline.Name}"/>
+                        <DataGridTextColumn Header="Экзамены" Binding="{Binding Discipline.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+
+        <GridSplitter Width="3" Background="Transparent"/>
     </Grid>
-    
+
 </UserControl>

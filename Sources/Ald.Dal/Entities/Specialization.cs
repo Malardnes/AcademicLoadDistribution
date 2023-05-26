@@ -8,10 +8,6 @@ namespace Ald.Dal.Entities
     public class Specialization : NamedEntity
     {
         [Required]
-        public int DepartmentId { get; set; }
-        public virtual Department Department { get; set; }
-
-        [Required]
         [MaxLength(255)]
         public override string Name { get; set; }
 

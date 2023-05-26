@@ -18,6 +18,6 @@ namespace Ald.Dal.Entities
         public int CycleId { get; set; }
         public virtual Cycle Cycle { get; set; }
 
-        public virtual ICollection<ContentOfTheEducationalPlan> EducationPlans { get; set; }
+        public virtual ICollection<EducationalPlan> EducationPlans { get; set; }
     }
 }

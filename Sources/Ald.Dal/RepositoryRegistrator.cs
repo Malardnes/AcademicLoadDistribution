@@ -25,14 +25,13 @@ namespace Ald.Dal
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services) => services
             .AddTransient<IRepository<Group>, GroupsRepository>()
-            .AddTransient<IRepository<Department>, Repository<Department>>()
             .AddTransient<IRepository<Specialization>, Repository<Specialization>>()
             .AddTransient<IRepository<CycleType>, Repository<CycleType>>()
             .AddTransient<IRepository<Cycle>, Repository<Cycle>>()
             .AddTransient<IRepository<Discipline>, Repository<Discipline>>()
             .AddTransient<IRepository<AttestationType>, Repository<AttestationType>>()
             .AddTransient<IRepository<EducationType>, Repository<EducationType>>()
-            .AddTransient<IRepository<ContentOfTheEducationalPlan>, Repository<ContentOfTheEducationalPlan>>()
+            .AddTransient<IRepository<EducationalPlan>, Repository<EducationalPlan>>()
             .AddTransient<IRepository<Teacher>, Repository<Teacher>>()
             .AddTransient<IRepository<TeachingLoad>, Repository<TeachingLoad>>()
         ;

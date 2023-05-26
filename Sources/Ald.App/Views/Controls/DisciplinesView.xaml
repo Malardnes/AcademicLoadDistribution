@@ -50,7 +50,7 @@
                 <UniformGrid DockPanel.Dock="Bottom" Columns="3">
                     <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
                         <Button.ToolTip>
-                            <TextBlock Text="Создать новую дисциплину"/>
+                            <TextBlock Text="Создать новый цикл"/>
                         </Button.ToolTip>
                     </Button>
 
@@ -58,8 +58,8 @@
                         <Button.ToolTip>
                             <TextBlock Text="{Binding
                                 SelectedGroup.Name,
-                                FallbackValue='Выберете дисциплину для редактирования',
-                                StringFormat='Редактировать дисциплину {0}'}"/>
+                                FallbackValue='Выберете цикл для редактирования',
+                                StringFormat='Редактировать цикл {0}'}"/>
                         </Button.ToolTip>
                     </Button>
 
@@ -67,8 +67,8 @@
                         <Button.ToolTip>
                             <TextBlock Text="{Binding
                                 SelectedGroup.Name,
-                                FallbackValue='Выберете дисциплину для удаления',
-                                StringFormat='Удалить дисциплину {0}'}"/>
+                                FallbackValue='Выберете цикл для удаления',
+                                StringFormat='Удалить цикл {0}'}"/>
                         </Button.ToolTip>
                     </Button>
                 </UniformGrid>
@@ -104,6 +104,32 @@
                     <TextBlock Grid.Column="0" Text="Поиск:" VerticalAlignment="Center" Padding="0,5" Margin="10,0,10,0"/>
                     <TextBox Grid.Column="1" Text="{x:Null}" Background="LightGray" MinWidth="350" Padding="0,5"/>
                 </Grid>
+
+                <UniformGrid DockPanel.Dock="Bottom" Columns="3">
+                    <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="Создать новую дисциплину"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Редактировать" Command="{Binding UpdateSelectedGroupCommand}" Margin="1.5,3,1.5,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете дисциплину для редактирования',
+                                StringFormat='Редактировать дисциплину {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button Content="Удалить" Command="{Binding DeleteSelectedGroupCommand}" Margin="1.5,3,0,3">
+                        <Button.ToolTip>
+                            <TextBlock Text="{Binding
+                                SelectedGroup.Name,
+                                FallbackValue='Выберете дисциплину для удаления',
+                                StringFormat='Удалить дисциплину {0}'}"/>
+                        </Button.ToolTip>
+                    </Button>
+                </UniformGrid>
 
                 <DataGrid ItemsSource="{Binding SelectedGroup.Specialization.EducationPlans}" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" HorizontalGridLinesBrush="Transparent" VerticalGridLinesBrush="DarkGray">
                     <DataGrid.Columns>

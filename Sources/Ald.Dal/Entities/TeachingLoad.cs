@@ -14,6 +14,6 @@ namespace Ald.Dal.Entities
 
         [Required]
         public int ContentOfTheEducationalPlanId { get; set; }
-        public virtual ContentOfTheEducationalPlan ContentOfTheEducationalPlan { get; set; }
+        public virtual EducationalPlan ContentOfTheEducationalPlan { get; set; }
     }
 }

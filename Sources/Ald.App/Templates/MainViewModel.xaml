@@ -15,6 +15,10 @@
         <controls:DisciplinesView DataContext="{Binding}"/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewModelsControls:EducationalPlansViewModel}">
+        <controls:EducationalPlansView DataContext="{Binding}"/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type viewModelsControls:TeachersViewModel}">
         <controls:TeachersView DataContext="{Binding}"/>
     </DataTemplate>

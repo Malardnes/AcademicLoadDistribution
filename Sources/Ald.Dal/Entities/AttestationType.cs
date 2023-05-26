@@ -10,6 +10,6 @@ namespace Ald.Dal.Entities
         [MaxLength(255)]
         public override string Name { get; set; }
 
-        public virtual ICollection<ContentOfTheEducationalPlan> EducationPlans { get; set; }
+        public virtual ICollection<EducationalPlan> EducationPlans { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace Ald.App.ViewModels.Windows
         /// <summary>
         /// Репозиторий (хранилище) учебных планов.
         /// </summary>
-        private readonly IRepository<ContentOfTheEducationalPlan> _educationPlansRepository;
+        private readonly IRepository<EducationalPlan> _educationPlansRepository;
 
         /// <summary>
         /// Репозиторий (хранилище) информации о преподавателях.
@@ -165,7 +165,7 @@ namespace Ald.App.ViewModels.Windows
         /// </summary>
         private void OnShowEducationalPlansViewCommandExecuted(object p)
         {
-            // ...
+            CurrentViewModel = new EducationalPlansViewModel();
         }
 
         #endregion // Отобразить представление учебных планов.
@@ -206,7 +206,7 @@ namespace Ald.App.ViewModels.Windows
             IRepository<Group> groupsRepository,
             IRepository<Specialization> specializationsRepository,
             IRepository<Discipline> disciplinesRepository,
-            IRepository<ContentOfTheEducationalPlan> educationPlansRepository,
+            IRepository<EducationalPlan> educationPlansRepository,
             IRepository<Teacher> teachersRepository
         )
         {

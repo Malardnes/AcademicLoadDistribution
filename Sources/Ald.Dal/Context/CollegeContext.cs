@@ -1,17 +1,15 @@
 ﻿using Ald.Dal.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Ald.Dal.Context
 {
     public class CollegeContext : DbContext
     {
         public DbSet<AttestationType> AttestationTypes { get; set; }
-        public DbSet<ContentOfTheEducationalPlan> ContentOfTheEducationalPlans { get; set; }
+        public DbSet<EducationalPlan> ContentOfTheEducationalPlans { get; set; }
         public DbSet<EducationalPlan> EducationalPlans { get; set; }
         public DbSet<Cycle> Cycles { get; set; }
         public DbSet<CycleType> CycleTypes { get; set; }
-        public DbSet<Department> Departments { get; set; }
         public DbSet<Discipline> Disciplines { get; set; }
         public DbSet<EducationType> EducationTypes { get; set; }
         public DbSet<Group> Groups { get; set; }
