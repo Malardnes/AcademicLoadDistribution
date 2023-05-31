@@ -97,7 +97,7 @@
                 </Grid>
 
                 <UniformGrid DockPanel.Dock="Bottom" Columns="3">
-                    <Button Content="Создать" Command="{Binding CreateGroupCommand}" Margin="0,3,1.5,3">
+                    <Button Content="Создать" Command="{Binding ShowGroupsViewCommand}" Margin="0,3,1.5,3">
                         <Button.ToolTip>
                             <TextBlock Text="Добавить нагрузку"/>
                         </Button.ToolTip>

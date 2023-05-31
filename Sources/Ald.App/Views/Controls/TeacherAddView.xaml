@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Ald.App.Views.Controls.TeacherAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ald.App.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="500"
+             d:Background="White"
+             FontSize="16">
+
+    <GroupBox Header="Добавление преподавателя" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+            <StackPanel Margin="10, 5">
+                <TextBlock Text="Фамилия"/>
+                <TextBox MinWidth="200" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Margin="10, 5">
+                <TextBlock Text="Имя"/>
+                <TextBox MinWidth="200" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Margin="10, 5">
+                <TextBlock Text="Отчество"/>
+                <TextBox MinWidth="200" Padding="5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30">
+                <Button Content="Сохранить" MinWidth="150" Margin="25,0" Padding="10"/>
+                <Button Content="Отменить" MinWidth="150" Margin="25,0"/>
+            </StackPanel>
+        </StackPanel>
+    </GroupBox>
+</UserControl>

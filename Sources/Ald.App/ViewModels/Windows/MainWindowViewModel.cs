@@ -193,7 +193,7 @@ namespace Ald.App.ViewModels.Windows
         /// </summary>
         private void OnShowTeachersViewCommandExecuted(object p)
         {
-            CurrentViewModel = new TeachersViewModel(_teachersRepository);
+            CurrentViewModel = new TeachersViewModel(this, _teachersRepository);
         }
 
         #endregion // Отобразить представление преподавателей.

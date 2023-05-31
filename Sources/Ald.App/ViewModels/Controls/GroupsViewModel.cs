@@ -27,7 +27,7 @@ namespace Ald.App.ViewModels.Controls
         /// <summary>
         /// Список учебных групп.
         /// </summary>
-        public List<Group> Groups { get; set; }
+        public List<Group> Groups { get; set; } = new List<Group>();
 
         /// <summary>
         /// Список специальностей.
@@ -105,7 +105,12 @@ namespace Ald.App.ViewModels.Controls
         {
             _groupsRepository = groupsRepository;
 
-            Groups = _groupsRepository.Items.ToList();
+            //Groups = _groupsRepository.Items.ToList();
+
+            Specialization specialization = new Specialization { Id = 1, Name = "09.02.07 Информационные системы и программирование" };
+            Group group1 = new Group { Name = "4-09ПС-3", Course = 4, StudentsCount = 25, Specialization = specialization };
+            Groups.Add(group1);
+            //InvokePropertyChanged(nameof(Groups));
 
             Specializations.Add(new Specialization { Name = "Все специальности", Groups = Groups });
 
@@ -114,11 +119,11 @@ namespace Ald.App.ViewModels.Controls
                 if (Groups.Count > 0 && Specializations.Contains(group.Specialization)) continue;
                 Specializations.Add(group.Specialization);
             }
-
+            //
             SelectedSpecialization = Specializations[0];
-            SelectedCourse = Courses[0];
+            //SelectedCourse = Courses[0];
 
-            SelectFirstGroup();
+            //SelectFirstGroup();
         }
 
         #endregion // Конструкторы.

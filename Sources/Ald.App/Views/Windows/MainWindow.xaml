@@ -11,7 +11,7 @@
         xmlns:local="clr-namespace:Ald.App.Views.Windows"
         mc:Ignorable="d"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
-        Title="Главное окно"
+        Title="Распределение нагрузки преподавателей"
         Height="700"
         Width="1400"
         WindowStartupLocation="CenterScreen">

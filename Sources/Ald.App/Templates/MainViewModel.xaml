@@ -23,4 +23,8 @@
         <controls:TeachersView DataContext="{Binding}"/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewModelsControls:AddTeachersViewModel}">
+        <controls:TeacherAddView DataContext="{Binding}"/>
+    </DataTemplate>
+
 </ResourceDictionary>
